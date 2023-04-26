@@ -10,8 +10,8 @@ export default function PhotoList() {
 
   const getMore = () => {
     page.current = page.current + 1;
-    photoService.getList(page.current, "book").then((res) => {
-      setList((e) => [...e, ...res.results]);
+    photoService.getList(page.current).then((res) => {
+      setList((e) => [...e, ...res]);
     });
   };
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function PhotoList() {
             style={{ background: i.color }}
             onClick={() => chooseImage(i)}
           >
-            <img src={i.urls.regular} />
+            <img src={i.urls.small} />
             <div className="photo-content">
               <p>{i.description}</p>
             </div>

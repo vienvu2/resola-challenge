@@ -15,7 +15,7 @@ export default function PhotoSlide({ list, image, getMore, chooseImage }) {
   return (
     <div className="photo-slide">
       <div className="photo-main">
-        <img src={image.urls.regular} />
+        <img src={image.urls.full} />
         <div className="photo-content">
           <p>
             Author: <strong>{image.user?.name}</strong>
