@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { photoService } from "../service/photo";
 import PhotoSlide from "./photo-slide";
 
+const onlyUnique =(accumulator, current) => {
+  if (!accumulator.some((x) => x.id === current.id)) {
+    accumulator.push(current);
+  }
+  return accumulator;
+}
+
 export default function PhotoList() {
   const [list, setList] = useState([]);
   const page = useRef(0);
@@ -11,7 +18,7 @@ export default function PhotoList() {
   const getMore = () => {
     page.current = page.current + 1;
     photoService.getList(page.current).then((res) => {
-      setList((e) => [...e, ...res]);
+      setList((e) => [...e, ...res].reduce(onlyUnique, []));
     });
   };
   useEffect(() => {

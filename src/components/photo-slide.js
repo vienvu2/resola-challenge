@@ -14,8 +14,12 @@ export default function PhotoSlide({ list, image, getMore, chooseImage }) {
   }
   return (
     <div className="photo-slide">
-      <div className="photo-main">
-        <img src={image.urls.full} />
+      <div className="photo-main" key={image.id}>
+        <img
+          alt={image.description}
+          src={image.urls.full}
+          style={{ backgroundImage: `url(${image.urls.thumb})` }}
+        />
         <div className="photo-content">
           <p>
             Author: <strong>{image.user?.name}</strong>
